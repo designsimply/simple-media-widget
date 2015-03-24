@@ -76,5 +76,14 @@ var smw = smw || {};
 	$( document ).ready( function( $ ) {
 		frame.init();
 	});
+
+	$( document ).on( "widget-added", function(event, widget) {
+			frame.init();
+	});
+
+	$( document ).on( "widget-updated", function() {
+			frame.init();
+	});
+
 })( jQuery );
 
