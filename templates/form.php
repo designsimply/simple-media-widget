@@ -1,19 +1,19 @@
 <p>
-	<a id="<?php echo $widget_id; ?>" class="button simple-media-widget-select widefat"><?php esc_html_e( 'Select Media' ); ?></a>
+	<a id="<?php esc_attr( $widget_id ); ?>" class="button simple-media-widget-select widefat"><?php esc_html_e( 'Select Media' ); ?></a>
 </p>
 
-<div class="<?php echo $widget_id; ?> simple-media-widget-preview">
-	<h2<?php echo ( empty( $instance['title'] ) ) ? ' class="hidden">' : '>' . $instance['title']; ?></h2>
-	<p<?php echo ( empty( $instance['description'] ) ) ? ' class="hidden">' : '>' . $instance['description']; ?></p>
+<div class="<?php esc_attr( $widget_id ); ?> simple-media-widget-preview">
+	<h2<?php echo ( empty( $instance['title'] ) ) ? ' class="hidden">' : '>' . esc_html( $instance['title'] ); ?></h2>
+	<p<?php echo ( empty( $instance['description'] ) ) ? ' class="hidden">' : '>' . esc_html($instance['description'] ); ?></p>
 	<?php if ( ! empty( $instance['id'] ) ) {
 		// If an image id is saved for this widget, display the image using `wp_get_attachment_image()`.
-		echo wp_get_attachment_image( $instance['id'], $instance['size'], false, array(
-			'id'    => $widget_id,
-			'class' => 'align' . $instance['align'],
-			'title' => $instance['title'],
+		echo wp_get_attachment_image( esc_attr( $instance['id'] ), esc_attr( $instance['size'] ), false, array(
+			'id'    => esc_attr( $widget_id ),
+			'class' => 'align' . esc_attr( $instance['align'] ),
+			'title' => esc_attr( $instance['title'] ),
 		) );
 	} else {
-			echo '<img id="' . $widget_id . '" class="hidden" />';
+			echo '<img id="' . esc_attr( $widget_id ) . '" class="hidden" />';
 	} ?>
 </div>
 
@@ -28,5 +28,4 @@
 unset( $instance['target'] );
 foreach( array_keys( $instance ) as $i ) { ?>
 	<input type="hidden" id="<?php echo $this->get_field_id( $i ); ?>" name="<?php echo $this->get_field_name( $i ); ?>" value="<?php echo esc_attr( $instance[$i] ); ?>" />
-<?php } ?>
-
+<?php }

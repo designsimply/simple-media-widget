@@ -161,23 +161,23 @@ class Simple_Media_Widget extends WP_Widget {
 
 		$instance['id']    = intval( $new_instance['id'] );
 		$instance['width'] = intval( $new_instance['width'] );
-		$instance['title'] = sanitize_title( $new_instance['title'] );
+		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 		$instance['alt']   = sanitize_text_field( $new_instance['alt'] );
 		if ( current_user_can('unfiltered_html') ) {
-			$instance['caption'] =     $new_instance['caption'];
-			$instance['description'] = $new_instance['description'];
+			$instance['caption'] =     wp_kses_post ( $new_instance['caption'] );
+			$instance['description'] = wp_kses_post ( $new_instance['description'] );
 		} else {
 			$instance['caption'] =     wp_filter_post_kses( $new_instance['caption'] );
 			$instance['description'] = wp_filter_post_kses( $new_instance['description'] );
 		}
 		$instance['linkUrl'] = filter_var( $new_instance['linkUrl'], FILTER_VALIDATE_URL );
 		// Everything else
-		$instance['url']    = $new_instance['url'];
-		$instance['link']   = $new_instance['link'];
-		$instance['align']  = $new_instance['align'];
-		$instance['size']   = $new_instance['size'];
-		$instance['linkTo'] = $new_instance['linkTo'];
-		$instance['target'] = $new_instance['target'];
+		$instance['url']    = filter_var( $new_instance['url'], FILTER_VALIDATE_URL );
+		$instance['link']   = filter_var( $new_instance['link'], FILTER_VALIDATE_URL );
+		$instance['align']  = sanitize_text_field( $new_instance['align'] );
+		$instance['size']   = sanitize_text_field( $new_instance['size'] );
+		$instance['linkTo'] = sanitize_text_field( $new_instance['linkTo'] );
+		$instance['target'] = sanitize_text_field( $new_instance['target'] );
 
 		return $instance;
 	}
@@ -257,4 +257,3 @@ class Simple_Media_Widget extends WP_Widget {
 }
 
 add_action( 'widgets_init', array( Simple_Media_Widget::get_instance(), 'simple_media_widget_init' ) );
-
