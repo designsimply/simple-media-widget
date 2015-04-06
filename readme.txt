@@ -4,7 +4,7 @@ Tags: media, widget
 Requires at least: 3.9.2
 Tested up to: 4.2-beta1
 Stable tag: 1.0.0
-License: GNU General Public License v2.0 or later¬
+License: GNU General Public License v2.0 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
 Add an image to a widget area.
