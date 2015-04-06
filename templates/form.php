@@ -1,8 +1,8 @@
 <p>
-	<a id="<?php esc_attr( $widget_id ); ?>" class="button simple-media-widget-select widefat"><?php esc_html_e( 'Select Media' ); ?></a>
+	<a id="<?php esc_attr_e( $widget_id ); ?>" class="button simple-media-widget-select widefat"><?php esc_html_e( 'Select Media' ); ?></a>
 </p>
 
-<div class="<?php esc_attr( $widget_id ); ?> simple-media-widget-preview">
+<div class="<?php esc_attr_e( $widget_id ); ?> simple-media-widget-preview">
 	<h2<?php echo ( empty( $instance['title'] ) ) ? ' class="hidden">' : '>' . esc_html( $instance['title'] ); ?></h2>
 	<p<?php echo ( empty( $instance['description'] ) ) ? ' class="hidden">' : '>' . esc_html($instance['description'] ); ?></p>
 	<?php if ( ! empty( $instance['id'] ) ) {
