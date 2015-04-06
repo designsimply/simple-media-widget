@@ -21,19 +21,6 @@ class Simple_Media_Widget extends WP_Widget {
 	private static $instance = null;
 
 	/**
-	 * Returns the instance of this class.
-	 *
-	 * It's a singleton class.
-	 *
-	 * @return Media_Modal_Demo The instance
-	 */
-	public static function get_instance() {
-		if ( ! self::$instance )
-			self::$instance = new self;
-		return self::$instance;
-	}
-
-	/**
 	 * Filter media view strings.
 	 *
 	 * `insertMediaTitle` is the title of the modal.
@@ -251,9 +238,10 @@ class Simple_Media_Widget extends WP_Widget {
 		wp_enqueue_script( 'simple-media-admin' );
 	}
 
-	public function simple_media_widget_init() {
-		register_widget( 'Simple_Media_Widget' );
-	}
 }
 
-add_action( 'widgets_init', array( Simple_Media_Widget::get_instance(), 'simple_media_widget_init' ) );
+function simple_media_widget_init() {
+	register_widget( 'Simple_Media_Widget' );
+}
+
+add_action( 'widgets_init', 'simple_media_widget_init' );
