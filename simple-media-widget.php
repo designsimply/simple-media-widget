@@ -56,11 +56,11 @@ class Simple_Media_Widget extends WP_Widget {
      * @since 0.1.0
 	 */
 	public function __construct() {
-
-		$smw_name = __( 'Media Widget' );
-		$smw_desc = __( 'Add an image to a widget area.' );
-
-		$this->WP_Widget( 'Simple_Media_Widget', $smw_name, $smw_desc );
+		parent::__construct(
+			'simple_media_widget',
+			__( 'Media Widget' ),
+			array( 'description' => __( 'Add an image to a widget area.' ) )
+		);
 
 		add_filter( 'media_view_strings', array( $this, 'filter_media_view_strings' ) );
 		add_filter( 'media_view_settings', array( $this, 'filter_media_view_settings' ) );
