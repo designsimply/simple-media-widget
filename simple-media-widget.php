@@ -86,14 +86,10 @@ class Simple_Media_Widget extends WP_Widget {
 
 		if ( ! empty( $title ) ) {
 			echo $before_title . $title . $after_title;
-		};
+		}
 
 		if ( ! empty( $instance['description'] ) ) {
 			echo '<p class="align' . $instance['align'] . '">' . $instance['description'] . '</p>';
-		}
-
-		if ( ! empty( $instance['caption'] ) ) {
-			echo '[caption id="attachment_' . $instance['id'] . '" align="align' . $instance['align'] . '" width="' . $instance['width'] . '"]';
 		}
 
 		if ( 'file' == $instance['linkTo'] ) {
@@ -106,16 +102,18 @@ class Simple_Media_Widget extends WP_Widget {
 			$selectedLink = '';
 		}
 
+		// Build the image output
+		$image_output = '';
 		if ( ! empty( $selectedLink ) ) {
-			echo '<a href="' . $selectedLink . '"';
+				$image_output .= '<a href="' . $selectedLink . '"';
 			if ( 'on' == $instance['target'] ) {
-				echo ' target="_blank"';
+				$image_output .= ' target="_blank"';
 			}
-			echo '>';
+			$image_output .= '>';
 		}
 
 		if ( ! empty( $instance['id'] ) ) {
-			echo wp_get_attachment_image( $instance['id'], $instance['size'], false, array(
+			$image_output .= wp_get_attachment_image( $instance['id'], $instance['size'], false, array(
 				'id'    => 'simple-media-widget-image-preview',
 				'class' => 'align' . $instance['align'],
 				'title' => $instance['title'],
@@ -123,11 +121,18 @@ class Simple_Media_Widget extends WP_Widget {
 		}
 
 		if ( ! empty( $selectedLink ) ) {
-			echo '</a>';
+			$image_output .= '</a>';
 		}
 
+		// Build the caption output
+		$caption_output = '';
 		if ( ! empty( $instance['caption'] ) ) {
-			echo ' ' . $instance['caption'] . '[/caption]';
+			$caption_output .= '[caption id="attachment_' . $instance['id'] . '" align="align' . $instance['align'] . '" width="' . $instance['width'] . '"]';
+			$caption_output .= $image_output;
+			$caption_output .= ' ' . $instance['caption'] . '[/caption]';
+			echo do_shortcode( $caption_output );
+		} else {
+			echo $image_output;
 		}
 
 		echo "\n" . $after_widget;
