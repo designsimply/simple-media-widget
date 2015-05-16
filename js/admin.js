@@ -41,31 +41,29 @@ var smw = smw || {};
 			var widget_id = wp.media.editor.activeEditor;
 
 			// Display a preview of the image in the widgets page or customizer panel.
-			$( '.simple-media-widget-preview.' + widget_id + ' h2' ).attr( 'class', '' );
-			$( '.simple-media-widget-preview.' + widget_id + ' h2' ).html( attachment.title);
 			$( '.simple-media-widget-preview.' + widget_id + ' p' ).html( attachment.description );
 			$( '.simple-media-widget-preview.' + widget_id + ' img' ).attr({
-				src:    attachment.sizes[props.size].url,
-				class:  'align' + props.align,
-				title:  attachment.title,
-				alt:    attachment.alt,
-				width:  attachment.sizes[props.size].width,
-				height: attachment.sizes[props.size].height,
+				'src':    attachment.sizes[props.size].url,
+				'class':  'align' + props.align,
+				'title':  attachment.title,
+				'alt':    attachment.alt,
+				'width':  attachment.sizes[props.size].width,
+				'height': attachment.sizes[props.size].height
 			});
 
-			// Populate hidden form fields with selection data from the media frame.
-			$('#widget-' + widget_id + '-id').val( attachment.id );
-			$('#widget-' + widget_id + '-url').val( attachment.url );
-			$('#widget-' + widget_id + '-link').val( attachment.link);
-			$('#widget-' + widget_id + '-title').val( attachment.title );
-			$('#widget-' + widget_id + '-caption').val( attachment.caption );
-			$('#widget-' + widget_id + '-alt').val( attachment.alt );
-			$('#widget-' + widget_id + '-description').val( attachment.description );
-			$('#widget-' + widget_id + '-align').val( props.align );
-			$('#widget-' + widget_id + '-size').val( props.size );
-			$('#widget-' + widget_id + '-linkTo').val( props.link );
-			$('#widget-' + widget_id + '-linkUrl').val( props.linkUrl );
-			$('#widget-' + widget_id + '-width').val( attachment.sizes[props.size].width );
+			// Populate form fields with selection data from the media frame.
+			$( '#widget-' + widget_id + '-title' ).val( attachment.title );
+			$( '#widget-' + widget_id + '-id' ).val( attachment.id );
+			$( '#widget-' + widget_id + '-url' ).val( attachment.url );
+			$( '#widget-' + widget_id + '-link' ).val( attachment.link);
+			$( '#widget-' + widget_id + '-caption' ).val( attachment.caption );
+			$( '#widget-' + widget_id + '-alt' ).val( attachment.alt );
+			$( '#widget-' + widget_id + '-description' ).val( attachment.description );
+			$( '#widget-' + widget_id + '-align' ).val( props.align );
+			$( '#widget-' + widget_id + '-size' ).val( props.size );
+			$( '#widget-' + widget_id + '-linkTo' ).val( props.link );
+			$( '#widget-' + widget_id + '-linkUrl' ).val( props.linkUrl );
+			$( '#widget-' + widget_id + '-width' ).val( attachment.sizes[props.size].width );
 		},
 
 		closeMediaManager: function( id ) {
