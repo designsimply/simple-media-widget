@@ -70,7 +70,7 @@ var smw = smw || {};
 		}
 	};
 
-	$( document ).ready( function( $ ) {
+	$( document ).ready( function() {
 		frame.init();
 	});
 
