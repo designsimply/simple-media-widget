@@ -92,14 +92,16 @@ class Simple_Media_Widget extends WP_Widget {
 			echo '<p class="align' . $instance['align'] . '">' . $instance['description'] . '</p>';
 		}
 
-		if ( 'file' == $instance['linkTo'] ) {
-			$selectedLink = $instance['url'];
-		} else if ( 'post' == $instance['linkTo'] ) {
-			$selectedLink = $instance['link'];
-		} else if ( 'custom' == $instance['linkTo'] && ! empty( $instance['linkTo'] ) ) {
-			$selectedLink = $instance['linkUrl'];
-		} else {
-			$selectedLink = '';
+		if ( ! empty( $instance['linkTo'] ) ) {
+			if ( 'file' == $instance['linkTo'] ) {
+				$selectedLink = $instance['url'];
+			} else if ( 'post' == $instance['linkTo'] ) {
+				$selectedLink = $instance['link'];
+			} else if ( 'custom' == $instance['linkTo'] && ! empty( $instance['linkTo'] ) ) {
+				$selectedLink = $instance['linkUrl'];
+			} else {
+				$selectedLink = '';
+			}
 		}
 
 		// Build the image output
