@@ -1,5 +1,4 @@
 <?php
-
 /*
 Plugin Name: Simple Media Widget
 Description: A widget for adding images.
@@ -35,6 +34,7 @@ class Simple_Media_Widget extends WP_Widget {
 
 		// @todo: Add gallery support later.
 		unset( $strings['createGalleryTitle'] );
+		unset( $strings['mediaLibraryTitle'] );
 
 		return $strings;
 	}
