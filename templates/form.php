@@ -1,14 +1,15 @@
 <p>
-	<a id="<?php esc_attr_e( $widget_id ); ?>" class="button simple-media-widget-select widefat"><?php esc_html_e( 'Select Media' ); ?></a>
+	<a id="<?php echo esc_attr( $widget_id ); ?>" class="button simple-media-widget-select widefat"><?php esc_html_e( 'Select Media' ); ?></a>
 </p>
 
-<div class="<?php esc_attr_e( $widget_id ); ?> simple-media-widget-preview">
 <p>
 	<label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
 		 name="<?php echo $this->get_field_name('title'); ?>"
 		 type="text" value="<?php echo esc_html($instance['title'] ); ?>" />
 </p>
+
+<div class="<?php echo esc_attr( $widget_id ); ?> simple-media-widget-preview">
 	<?php if ( ! empty( $instance['id'] ) ) {
 		// If an image id is saved for this widget, display the image using `wp_get_attachment_image()`.
 		echo wp_get_attachment_image( esc_attr( $instance['id'] ), esc_attr( $instance['size'] ), false, array(
