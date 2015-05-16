@@ -33,9 +33,8 @@ var smw = smw || {};
 		 *
 		 * @global wp.media.editor.activeEditor
 		 *
-		 * @param {Object} props Attachment details (align, link, size, etc).
-		 * @param {Object} attachment The attachment object, media version of Post
-		 *  (title, description, caption, url, sizes, etc).
+		 * @param {Object} props Attachment Display Settings (align, link, size, etc).
+		 * @param {Object} attachment Attachment Details (title, description, caption, url, sizes, etc).
 		 */
 		renderAttachmentDetails: function( props, attachment ) {
 			var widget_id = wp.media.editor.activeEditor;
