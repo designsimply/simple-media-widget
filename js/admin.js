@@ -21,7 +21,7 @@ var smw = smw || {};
 		openMediaManager: function( e ) {
 			e.preventDefault();
 
-			wp.media.editor.send.attachment = frame.render;
+			wp.media.editor.send.attachment = frame.renderAttachmentDetails;
 			wp.media.editor.remove = frame.closeMediaManager;
 
 			var widget_id = $( e.target ).attr( 'id');
@@ -37,8 +37,8 @@ var smw = smw || {};
 		 * @param {Object} attachment The attachment object, media version of Post
 		 *  (title, description, caption, url, sizes, etc).
 		 */
-		render: function( props, attachment ) {
-			widget_id = wp.media.editor.activeEditor;
+		renderAttachmentDetails: function( props, attachment ) {
+			var widget_id = wp.media.editor.activeEditor;
 
 			// Display a preview of the image in the widgets page or customizer panel.
 			$( '.simple-media-widget-preview.' + widget_id + ' h2' ).attr( 'class', '' );
