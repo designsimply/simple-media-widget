@@ -63,6 +63,9 @@ var smw = smw || {};
 			$( '#widget-' + widget_id + '-linkTo' ).val( props.link );
 			$( '#widget-' + widget_id + '-linkUrl' ).val( props.linkUrl );
 			$( '#widget-' + widget_id + '-width' ).val( attachment.sizes[props.size].width );
+
+			// Trigger a sync to update the widget in the customizer preview.
+			$( '#widget-' + widget_id + '-url' ).trigger( 'change' );
 		},
 
 		closeMediaManager: function( id ) {
