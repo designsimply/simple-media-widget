@@ -2,10 +2,8 @@
 	text-align: center
 }
 
-.simple-media-widget-preview:after {
-	clear: both;
-	content: '';
-	display: block
+.simple-media-widget-preview {
+	overflow: auto
 }
 
 .simple-media-widget-preview .aligncenter {
