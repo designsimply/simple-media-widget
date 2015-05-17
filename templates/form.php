@@ -9,7 +9,8 @@
 		 type="text" value="<?php echo esc_html($instance['title'] ); ?>" />
 </p>
 
-<div class="<?php echo esc_attr( $widget_id ); ?> simple-media-widget-preview">
+<div id="<?php echo esc_attr( $widget_id ); ?>" class="simple-media-widget-preview">
+	<p<?php echo ( empty( $instance['description'] ) ) ? ' class="hidden">' : '>' . esc_html($instance['description'] ); ?></p>
 	<?php if ( ! empty( $instance['id'] ) ) {
 		// If an image id is saved for this widget, display the image using `wp_get_attachment_image()`.
 		echo wp_get_attachment_image( esc_attr( $instance['id'] ), esc_attr( $instance['size'] ), false, array(
@@ -20,10 +21,9 @@
 	} else {
 			echo '<img id="' . esc_attr( $widget_id ) . '" class="hidden" />';
 	} ?>
-	<p<?php echo ( empty( $instance['description'] ) ) ? ' class="hidden">' : '>' . esc_html($instance['description'] ); ?></p>
 </div>
 
-<p>
+<p class="simple-media-widget-other">
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'target' ); ?>"
 		id="<?php echo $this->get_field_id( 'target' ); ?>"
 		<?php if ( ! empty( $instance['target'] ) ) { checked( 'on', $instance['target'] ); } ?> />

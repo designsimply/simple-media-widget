@@ -116,7 +116,7 @@ class Simple_Media_Widget extends WP_Widget {
 
 		if ( ! empty( $instance['id'] ) ) {
 			$image_output .= wp_get_attachment_image( $instance['id'], $instance['size'], false, array(
-				'id'    => 'simple-media-widget-image-preview',
+				'id'    => esc_attr( $widget_id ),
 				'class' => 'align' . $instance['align'],
 				'title' => $instance['title'],
 			) );

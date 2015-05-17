@@ -39,9 +39,9 @@ var smw = smw || {};
 		renderAttachmentDetails: function( props, attachment ) {
 			var widget_id = wp.media.editor.activeEditor;
 
-			// Display a preview of the image in the widgets page or customizer panel.
-			$( '.simple-media-widget-preview.' + widget_id + ' p' ).html( attachment.description );
-			$( '.simple-media-widget-preview.' + widget_id + ' img' ).attr({
+			// Display a preview of the image in the widgets page and customizer controls.
+			$( '#' + widget_id + ' p' ).html( attachment.description );
+			$( '#' + widget_id + ' img' ).attr({
 				'src':    attachment.sizes[props.size].url,
 				'class':  'align' + props.align,
 				'title':  attachment.title,
