@@ -88,7 +88,7 @@ class Simple_Media_Widget extends WP_Widget {
 		}
 
 		if ( ! empty( $instance['description'] ) ) {
-			echo '<p class="description align' . $instance['align'] . '">' . $instance['description'] . '</p>';
+			echo '<p class="attachment-description align' . $instance['align'] . '">' . $instance['description'] . '</p>';
 		}
 
 		if ( ! empty( $instance['linkTo'] ) ) {

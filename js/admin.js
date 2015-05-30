@@ -72,7 +72,12 @@ var smw = smw || {};
 
 			// Display a preview of the image in the widgets page and customizer controls.
 			rendered_view.find( '.extras' ).removeClass( 'hidden' );
-			rendered_view.find( '.description' ).html( attachment.description );
+			if ( attachment.description ) {
+				rendered_view.find( '.attachment-description' ).removeClass( 'hidden' );
+			} else {
+				rendered_view.find( '.attachment-description' ).addClass( 'hidden' );
+			}
+			rendered_view.find( '.attachment-description' ).html( attachment.description );
 			rendered_view.find( '.image' ).attr({
 				'data-id': widget_id,
 				'src':     attachment.sizes[props.size].url,

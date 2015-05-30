@@ -12,7 +12,7 @@
 			 type="text" value="<?php echo esc_html($instance['title'] ); ?>" />
 	</p>
 
-	<p class="description <?php echo ( empty( $instance['description'] ) ) ? 'hidden' : '' ?>">
+	<p class="attachment-description <?php echo ( empty( $instance['description'] ) ) ? 'hidden' : '' ?>">
 		<?php echo esc_html( $instance['description'] ); ?>
 	</p>
 
