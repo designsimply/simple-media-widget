@@ -15,7 +15,7 @@ var smw = smw || {};
 		buttonId: '.media-widget-preview .button, .media-widget-preview .image',
 
 		init: function() {
-			$( frame.buttonId ).on( 'click', frame.openMediaManager );
+			$( frame.buttonId ).off('click.mediaWidget').on( 'click.mediaWidget', frame.openMediaManager );
 		},
 
 		openMediaManager: function( event ) {
