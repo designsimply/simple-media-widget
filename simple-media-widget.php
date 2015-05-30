@@ -57,7 +57,7 @@ class Simple_Media_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'simple_media_widget',
-			__( 'Media Widget' ),
+			__( 'Media' ),
 			array( 'description' => __( 'Add an image to a widget area.' ) )
 		);
 
