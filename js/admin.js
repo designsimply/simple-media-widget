@@ -50,6 +50,8 @@ var smw = smw || {};
 			// Start with container elements for the widgets page, customizer controls, and customizer preview.
 			var rendered_view = $( '.' + widget_id + ', #customize-control-widget_' + widget_id + ', #' + widget_id );
 
+			// The widget title bar doesn't update automatically on the Appearance > Widgets page. This fixes that problem.
+			rendered_view.closest( '.widget' ).find( '.in-widget-title' ).html( ': ' + attachment.title );
 
 			// Display a preview of the image in the widgets page and customizer controls.
 			rendered_view.find( '.extras' ).removeClass( 'hidden' );
