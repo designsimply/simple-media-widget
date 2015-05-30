@@ -99,12 +99,7 @@ var smw = smw || {};
 		}
 	};
 
-	$( document ).ready( function() {
-		frame.init();
-	});
-
-	$( document ).on( 'widget-added widget-updated', function() {
-		frame.init();
-	});
+	$( document ).ready( frame.init );
+	$( document ).on( 'widget-added widget-updated', frame.init );
 
 })( jQuery );
