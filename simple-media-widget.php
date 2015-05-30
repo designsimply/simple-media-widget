@@ -88,7 +88,7 @@ class Simple_Media_Widget extends WP_Widget {
 		}
 
 		if ( ! empty( $instance['description'] ) ) {
-			echo '<p class="align' . $instance['align'] . '">' . $instance['description'] . '</p>';
+			echo '<p class="description align' . $instance['align'] . '">' . $instance['description'] . '</p>';
 		}
 
 		if ( ! empty( $instance['linkTo'] ) ) {
@@ -115,8 +115,8 @@ class Simple_Media_Widget extends WP_Widget {
 
 		if ( ! empty( $instance['id'] ) ) {
 			$image_output .= wp_get_attachment_image( $instance['id'], $instance['size'], false, array(
-				'id'    => esc_attr( $widget_id ),
-				'class' => 'align' . $instance['align'],
+				'data-id'    => esc_attr( $widget_id ),
+				'class' => 'image align' . $instance['align'],
 				'title' => $instance['title'],
 			) );
 		}

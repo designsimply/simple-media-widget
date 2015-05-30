@@ -1,18 +1,18 @@
-.simple-media-widget-select {
+.media-widget-preview .button {
 	text-align: center
 }
 
-.simple-media-widget-preview {
+.media-widget-preview p {
 	overflow: auto
 }
 
-.simple-media-widget-preview .aligncenter {
+.media-widget-preview .aligncenter {
 	display: block;
 	margin: 0 auto;
 	text-align: center
 }
 
-.simple-media-widget-preview img {
-	max-width: 100%;
-	height: auto
+.media-widget-preview .image {
+	height: auto;
+	max-width: 100%
 }

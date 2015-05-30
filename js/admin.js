@@ -12,64 +12,66 @@ var smw = smw || {};
 	var frame;
 
 	smw.media = frame = {
-		buttonId: '.simple-media-widget-select.button, .simple-media-widget-preview img',
+		buttonId: '.media-widget-preview .button, .media-widget-preview .image',
 
 		init: function() {
-			$( frame.buttonId ).on( 'click', this.openMediaManager );
+			$( frame.buttonId ).on( 'click', frame.openMediaManager );
 		},
 
-		openMediaManager: function( e ) {
-			e.preventDefault();
+		openMediaManager: function( event ) {
+			event.preventDefault();
+			var widget_id = $( event.target ).data( 'id');
 
 			wp.media.editor.send.attachment = frame.renderAttachmentDetails;
 			wp.media.editor.remove = frame.closeMediaManager;
 
-			var widget_id = $( e.target ).attr( 'id');
 			wp.media.editor.open( widget_id );
 		},
 
 		/**
 		 * Renders the attachment details from the media modal into the widget.
 		 *
-		 * @global wp.media.editor.activeEditor
-		 *
 		 * @param {Object} props Attachment Display Settings (align, link, size, etc).
 		 * @param {Object} attachment Attachment Details (title, description, caption, url, sizes, etc).
 		 */
-		renderAttachmentDetails: function( props, attachment ) {
-			var widget_id = wp.media.editor.activeEditor;
+		renderAttachmentDetails: function( widget_id, props, attachment ) {
+			// Start with container elements for the widgets page, customizer controls, and customizer preview.
+			var rendered_view = $( '.' + widget_id + ', #customize-control-widget_' + widget_id + ', #' + widget_id );
+
 
 			// Display a preview of the image in the widgets page and customizer controls.
-			$( '#' + widget_id + ' p' ).html( attachment.description );
-			$( '#' + widget_id + ' img' ).attr({
-				'src':    attachment.sizes[props.size].url,
-				'class':  'align' + props.align,
-				'title':  attachment.title,
-				'alt':    attachment.alt,
-				'width':  attachment.sizes[props.size].width,
-				'height': attachment.sizes[props.size].height
+			rendered_view.find( '.extras' ).removeClass( 'hidden' );
+			rendered_view.find( '.description' ).html( attachment.description );
+			rendered_view.find( '.image' ).attr({
+				'data-id': widget_id,
+				'src':     attachment.sizes[props.size].url,
+				'class':   'image align' + props.align,
+				'title':   attachment.title,
+				'alt':     attachment.alt,
+				'width':   attachment.sizes[props.size].width,
+				'height':  attachment.sizes[props.size].height
 			});
 
 			// Populate form fields with selection data from the media frame.
-			$( '#widget-' + widget_id + '-title' ).val( attachment.title );
-			$( '#widget-' + widget_id + '-id' ).val( attachment.id );
-			$( '#widget-' + widget_id + '-url' ).val( attachment.url );
-			$( '#widget-' + widget_id + '-link' ).val( attachment.link);
-			$( '#widget-' + widget_id + '-caption' ).val( attachment.caption );
-			$( '#widget-' + widget_id + '-alt' ).val( attachment.alt );
-			$( '#widget-' + widget_id + '-description' ).val( attachment.description );
-			$( '#widget-' + widget_id + '-align' ).val( props.align );
-			$( '#widget-' + widget_id + '-size' ).val( props.size );
-			$( '#widget-' + widget_id + '-linkTo' ).val( props.link );
-			$( '#widget-' + widget_id + '-linkUrl' ).val( props.linkUrl );
-			$( '#widget-' + widget_id + '-width' ).val( attachment.sizes[props.size].width );
+			rendered_view.find( '#widget-' + widget_id + '-title' ).val( attachment.title );
+			rendered_view.find( '#widget-' + widget_id + '-id' ).val( attachment.id );
+			rendered_view.find( '#widget-' + widget_id + '-url' ).val( attachment.url );
+			rendered_view.find( '#widget-' + widget_id + '-link' ).val( attachment.link);
+			rendered_view.find( '#widget-' + widget_id + '-caption' ).val( attachment.caption );
+			rendered_view.find( '#widget-' + widget_id + '-alt' ).val( attachment.alt );
+			rendered_view.find( '#widget-' + widget_id + '-description' ).val( attachment.description );
+			rendered_view.find( '#widget-' + widget_id + '-align' ).val( props.align );
+			rendered_view.find( '#widget-' + widget_id + '-size' ).val( props.size );
+			rendered_view.find( '#widget-' + widget_id + '-linkTo' ).val( props.link );
+			rendered_view.find( '#widget-' + widget_id + '-linkUrl' ).val( props.linkUrl );
+			rendered_view.find( '#widget-' + widget_id + '-width' ).val( attachment.sizes[props.size].width );
 
 			// Trigger a sync to update the widget in the customizer preview.
-			$( '#widget-' + widget_id + '-url' ).trigger( 'change' );
 		},
 
 		closeMediaManager: function( id ) {
 			wp.media.editor.remove( id );
+			rendered_view.find( '#widget-' + widget_id + '-url' ).trigger( 'change' );
 		}
 	};
 
