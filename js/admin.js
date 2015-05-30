@@ -9,7 +9,7 @@
 var smw = smw || {};
 
 (function( $ ) {
-	var frame;
+	var frame, media_widget_frame;
 
 	smw.media = frame = {
 		buttonId: '.media-widget-preview .button, .media-widget-preview .image',
@@ -22,10 +22,22 @@ var smw = smw || {};
 			event.preventDefault();
 			var widget_id = $( event.target ).data( 'id');
 
-			wp.media.editor.send.attachment = frame.renderAttachmentDetails;
-			wp.media.editor.remove = frame.closeMediaManager;
+			// Create the media frame.
+			media_widget_frame = wp.media({
+					library:    { type: 'image' },
+					frame:      'post',
+					state:      'insert'
+			});
 
-			wp.media.editor.open( widget_id );
+			// Render the attachment details.
+			media_widget_frame.on( 'close', function() {
+				var props = media_widget_frame.content.get('.attachments-browser').sidebar.get('display').model.toJSON();
+				var attachment = media_widget_frame.state().get('selection').first().toJSON();
+
+				frame.renderAttachmentDetails( widget_id, props, attachment );
+			});
+
+			media_widget_frame.open( widget_id );
 		},
 
 		/**
@@ -67,10 +79,6 @@ var smw = smw || {};
 			rendered_view.find( '#widget-' + widget_id + '-width' ).val( attachment.sizes[props.size].width );
 
 			// Trigger a sync to update the widget in the customizer preview.
-		},
-
-		closeMediaManager: function( id ) {
-			wp.media.editor.remove( id );
 			rendered_view.find( '#widget-' + widget_id + '-url' ).trigger( 'change' );
 		}
 	};
