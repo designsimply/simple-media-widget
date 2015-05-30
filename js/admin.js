@@ -45,10 +45,13 @@ var smw = smw || {};
 
 			// Render the attachment details.
 			media_widget_frame.on( 'close', function() {
-				var props = media_widget_frame.content.get('.attachments-browser').sidebar.get('display').model.toJSON();
-				var attachment = media_widget_frame.state().get('selection').first().toJSON();
+				// Only try to render the attachment details if a selection was made.
+				if ( media_widget_frame.state().get('selection').length > 0 ) {
+					var props = media_widget_frame.content.get('.attachments-browser').sidebar.get('display').model.toJSON();
+					var attachment = media_widget_frame.state().get('selection').first().toJSON();
 
-				frame.renderAttachmentDetails( widget_id, props, attachment );
+					frame.renderAttachmentDetails( widget_id, props, attachment );
+				}
 			});
 
 			media_widget_frame.open( widget_id );
