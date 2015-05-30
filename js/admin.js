@@ -29,6 +29,20 @@ var smw = smw || {};
 					state:      'insert'
 			});
 
+			// Populate previously selected media when the media frame is opened.
+			media_widget_frame.on( 'open', function() {
+				var selection = media_widget_frame.state().get('selection');
+				var ids = $( '#widget-' + widget_id + '-id' ).val().split(',');
+
+				if ( ids[0] > 0 ) {
+					ids.forEach( function( id ) {
+						var attachment = wp.media.attachment( id );
+						attachment.fetch();
+						selection.add( attachment ? [ attachment ] : [] );
+					});
+				}
+			});
+
 			// Render the attachment details.
 			media_widget_frame.on( 'close', function() {
 				var props = media_widget_frame.content.get('.attachments-browser').sidebar.get('display').model.toJSON();
